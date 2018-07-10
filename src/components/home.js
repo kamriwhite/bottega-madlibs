@@ -7,7 +7,7 @@ class Home extends Component {
   render() {
     return (
       <div className="home"> 
-       { header() } 
+       { Header() } 
        <Card />
       </div>
     );
