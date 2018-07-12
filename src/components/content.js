@@ -4,6 +4,11 @@ class Content extends Component {
     render() {
         
         const data = this.props.data;
+        this.props.data.map((data,index) => {
+            console.log(index);
+        })
+        //<span>{data.inexOf(data.color)</span>
+
         return (
             <p>
                 Ladies and gentlmen, this is <b>{data.color}</b> Barber, your sportscaster, 
