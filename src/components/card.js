@@ -24,15 +24,23 @@ class Card extends Component {
             adjectiveFour:'',
             nounThree:'',
             celebFour:'',
-            adjectiveFive:''
+            adjectiveFive:'',
+            contentVisible: false
         }
 
-        this.handelInputChange = this.handelInputChange.bind(this);
+        this.handleInputChange = this.handleInputChange.bind(this);
+        this.handleFormSubmit = this.handleFormSubmit.bind(this);
     }
 
-    handelInputChange(event) {
+    handleInputChange(event) {
        this.setState({ [event.target.name]: event.target.value})
     }
+
+    handleFormSubmit(event) {
+        event.preventDefault()
+        this.setState({ contentVisible: !this.state.contentVisible })
+    }
+
 
     render() {
 
@@ -59,12 +67,16 @@ class Card extends Component {
         ]
 
         return (
-            <div className="card">
+            <form onSubmit={"this.handleFormSubmit"} className="card">
+                <div className="card__inputs">
                 {
-                    inputData.map(data => Input( (data), this.handelInputChange ))
+                    inputData.map(data => Input( (data), this.handleInputChange ))
                 }
-                <Content data={this.state}/>
-            </div>
+                </div>
+                <button type="submit">{ !this.state.contentVisible ? 'Generate Mad Libs' : 'Clear Form'}</button>
+                {
+                    this.state.contentVisible ? <Content data={this.state}/> : ''
+            </form>
         )
     }
 }
