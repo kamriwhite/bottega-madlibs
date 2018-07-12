@@ -3,7 +3,7 @@ import React, { Component } from 'react';
 import Input from './input'; 
 import Content from './content';
 
-const_INITIAL_STATE = {
+const INITIAL_STATE = {
     color: '',
     pluralNoun: '',
     adjectiveOne: '',
@@ -48,7 +48,6 @@ class Card extends Component {
         }
     }
 
-
     render() {
 
         const inputData = [
@@ -70,11 +69,11 @@ class Card extends Component {
             {title: 'Adjective', state: 'this.state.adjectiveFour', name: 'adjectiveFour'},
             {title: 'Noun', state: 'this.state.nounThree', name: 'nounThree'},
             {title: 'Celebrity', state: 'this.state.celebFour', name: 'celebFour'},
-            {title: 'Adjective', state: 'this.state.adjectiveFive', name: 'adjectiveFive'}
+            {title: 'Adjective', state: 'this.state.adjectiveFive', name: 'adjectiveFive'},
         ]
 
         return (
-            <form onSubmit={"this.handleFormSubmit"} className="card">
+            <form onSubmit={this.handleFormSubmit} className="card">
                 <div className="card__inputs">
                 {
                     inputData.map((data, index) => { 
@@ -82,9 +81,10 @@ class Card extends Component {
                     })
                 }
                 </div>
-                <button type="submit">{ !this.state.contentVisible ? 'Generate Mad Libs' : 'Clear Form'}</button>
+                <button className={`card__${!this.state.contentVisible ? 'genertae' : 'clear'}`} type="submit">{!this.state.contentVisible} ></button>
                 {
                     this.state.contentVisible ? <Content data={this.state}/> : ''
+                }
             </form>
         )
     }
